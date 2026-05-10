@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TESTDI — Product Roadmap</title>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0e0f13;
+    --surface: #16181f;
+    --surface2: #1e2029;
+    --border: rgba(255,255,255,0.07);
+    --border2: rgba(255,255,255,0.12);
+    --text: #e8e9ef;
+    --muted: #7a7d8a;
+    --muted2: #9a9daa;
+
+    --p0: #00c9a7;
+    --p0-bg: rgba(0,201,167,0.08);
+    --p0-border: rgba(0,201,167,0.2);
+
+    --p1: #6c63ff;
+    --p1-bg: rgba(108,99,255,0.08);
+    --p1-border: rgba(108,99,255,0.2);
+
+    --p1s: #f59e0b;
+    --p1s-bg: rgba(245,158,11,0.08);
+    --p1s-border: rgba(245,158,11,0.2);
+
+    --p2: #ef4444;
+    --p2-bg: rgba(239,68,68,0.08);
+    --p2-border: rgba(239,68,68,0.2);
+
+    --p3: #3b82f6;
+    --p3-bg: rgba(59,130,246,0.08);
+    --p3-border: rgba(59,130,246,0.2);
+
+    --ops: #a855f7;
+    --ops-bg: rgba(168,85,247,0.08);
+    --ops-border: rgba(168,85,247,0.2);
+  }
+
+  body {
+    font-family: 'Be Vietnam Pro', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    padding: 2.5rem 1.5rem;
+    line-height: 1.6;
+  }
+
+  /* ── Header ── */
+  .header {
+    max-width: 960px;
+    margin: 0 auto 2.5rem;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  .header-left h1 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: #fff;
+    margin-bottom: 0.35rem;
+  }
+  .header-left p {
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+  .header-badges {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    align-items: center;
+    padding-top: 4px;
+  }
+  .badge {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    padding: 4px 10px;
+    border-radius: 20px;
+    border: 1px solid;
+    font-family: 'Space Mono', monospace;
+  }
+  .badge-green  { color: var(--p0); background: var(--p0-bg); border-color: var(--p0-border); }
+  .badge-purple { color: var(--p1); background: var(--p1-bg); border-color: var(--p1-border); }
+  .badge-amber  { color: var(--p1s); background: var(--p1s-bg); border-color: var(--p1s-border); }
+  .badge-red    { color: var(--p2); background: var(--p2-bg); border-color: var(--p2-border); }
+  .badge-blue   { color: var(--p3); background: var(--p3-bg); border-color: var(--p3-border); }
+  .badge-violet { color: var(--ops); background: var(--ops-bg); border-color: var(--ops-border); }
+
+  /* ── Timeline bar ── */
+  .timeline {
+    max-width: 960px;
+    margin: 0 auto 2rem;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 4px;
+  }
+  .tl-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 12px;
+    text-align: center;
+  }
+  .tl-label { font-size: 10px; color: var(--muted); font-family: 'Space Mono', monospace; margin-bottom: 4px; }
+  .tl-title { font-size: 12px; font-weight: 600; color: var(--text); }
+  .tl-item.active { border-color: var(--p0-border); background: var(--p0-bg); }
+  .tl-item.active .tl-title { color: var(--p0); }
+
+  /* ── Cards ── */
+  .cards { max-width: 960px; margin: 0 auto; display: flex; flex-direction: column; gap: 16px; }
+
+  .phase-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+  .phase-card:hover { border-color: var(--border2); }
+
+  .card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 24px;
+    border-bottom: 1px solid var(--border);
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .card-header-left { display: flex; align-items: center; gap: 12px; }
+  .phase-tag {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-family: 'Space Mono', monospace;
+    white-space: nowrap;
+  }
+  .card-title { font-size: 1rem; font-weight: 600; color: #fff; }
+  .card-duration {
+    font-size: 11px;
+    color: var(--muted);
+    font-family: 'Space Mono', monospace;
+    white-space: nowrap;
+  }
+
+  .card-body { padding: 20px 24px; }
+
+  /* ── Meta row ── */
+  .meta-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 18px;
+  }
+  .meta-box {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 14px;
+  }
+  .meta-label { font-size: 10px; color: var(--muted); font-family: 'Space Mono', monospace; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 0.05em; }
+  .meta-value { font-size: 13px; font-weight: 500; color: var(--text); line-height: 1.4; }
+
+  /* ── Two-col content ── */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+  @media (max-width: 600px) { .two-col { grid-template-columns: 1fr; } .meta-row { grid-template-columns: 1fr; } .timeline { grid-template-columns: repeat(3,1fr); } }
+
+  .col-title {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-family: 'Space Mono', monospace;
+    margin-bottom: 10px;
+  }
+
+  .checklist { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+  .checklist li {
+    font-size: 12.5px;
+    color: var(--muted2);
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    line-height: 1.5;
+  }
+  .checklist li::before {
+    content: '';
+    width: 14px;
+    height: 14px;
+    border-radius: 4px;
+    border: 1.5px solid var(--border2);
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .checklist.ai li::before {
+    content: '✦';
+    border: none;
+    width: auto;
+    height: auto;
+    font-size: 10px;
+    color: var(--p1s);
+    margin-top: 1px;
+  }
+
+  /* ── Goal box ── */
+  .goal-box {
+    border-radius: 10px;
+    padding: 12px 16px;
+    font-size: 12.5px;
+    line-height: 1.6;
+    border-left: 3px solid;
+    margin-top: 4px;
+  }
+
+  /* ── Owner tags ── */
+  .owner-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--border); }
+  .owner-tag {
+    font-size: 11px;
+    padding: 4px 10px;
+    border-radius: 6px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--muted2);
+  }
+
+  /* ── KPI chips ── */
+  .kpi-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+  .kpi-chip {
+    font-size: 11px;
+    font-family: 'Space Mono', monospace;
+    padding: 5px 12px;
+    border-radius: 20px;
+    border: 1px solid;
+    font-weight: 700;
+  }
+
+  /* ── Three-col grid ── */
+  .three-col { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 16px; }
+  @media (max-width: 600px) { .three-col { grid-template-columns: 1fr; } }
+  .mini-box {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 14px;
+  }
+  .mini-label { font-size: 10px; color: var(--muted); font-family: 'Space Mono', monospace; margin-bottom: 6px; text-transform: uppercase; }
+  .mini-value { font-size: 12px; color: var(--muted2); line-height: 1.5; }
+
+  /* ── Divider ── */
+  .divider { border: none; border-top: 1px solid var(--border); margin: 16px 0; }
+
+  /* ── Footer ── */
+  .footer {
+    max-width: 960px;
+    margin: 2rem auto 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 0;
+    border-top: 1px solid var(--border);
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .footer p { font-size: 11px; color: var(--muted); font-family: 'Space Mono', monospace; }
+
+  /* ── Color per phase ── */
+  .c-green  { --accent: var(--p0);  --accent-bg: var(--p0-bg);  --accent-bd: var(--p0-border);  }
+  .c-purple { --accent: var(--p1);  --accent-bg: var(--p1-bg);  --accent-bd: var(--p1-border);  }
+  .c-amber  { --accent: var(--p1s); --accent-bg: var(--p1s-bg); --accent-bd: var(--p1s-border); }
+  .c-red    { --accent: var(--p2);  --accent-bg: var(--p2-bg);  --accent-bd: var(--p2-border);  }
+  .c-blue   { --accent: var(--p3);  --accent-bg: var(--p3-bg);  --accent-bd: var(--p3-border);  }
+  .c-violet { --accent: var(--ops); --accent-bg: var(--ops-bg); --accent-bd: var(--ops-border); }
+
+  .phase-card.c-green  { border-left: 3px solid var(--p0); }
+  .phase-card.c-purple { border-left: 3px solid var(--p1); }
+  .phase-card.c-amber  { border-left: 3px solid var(--p1s); }
+  .phase-card.c-red    { border-left: 3px solid var(--p2); }
+  .phase-card.c-blue   { border-left: 3px solid var(--p3); }
+  .phase-card.c-violet { border-left: 3px solid var(--ops); }
+
+  .phase-tag.c-green  { color: var(--p0);  background: var(--p0-bg);  }
+  .phase-tag.c-purple { color: var(--p1);  background: var(--p1-bg);  }
+  .phase-tag.c-amber  { color: var(--p1s); background: var(--p1s-bg); }
+  .phase-tag.c-red    { color: var(--p2);  background: var(--p2-bg);  }
+  .phase-tag.c-blue   { color: var(--p3);  background: var(--p3-bg);  }
+  .phase-tag.c-violet { color: var(--ops); background: var(--ops-bg); }
+
+  .goal-box.c-green  { background: var(--p0-bg);  border-color: var(--p0);  color: #a7f3e0; }
+  .goal-box.c-purple { background: var(--p1-bg);  border-color: var(--p1);  color: #c4bfff; }
+  .goal-box.c-amber  { background: var(--p1s-bg); border-color: var(--p1s); color: #fde68a; }
+  .goal-box.c-red    { background: var(--p2-bg);  border-color: var(--p2);  color: #fca5a5; }
+  .goal-box.c-blue   { background: var(--p3-bg);  border-color: var(--p3);  color: #93c5fd; }
+  .goal-box.c-violet { background: var(--ops-bg); border-color: var(--ops); color: #d8b4fe; }
+
+  .kpi-chip.c-green  { color: var(--p0);  background: var(--p0-bg);  border-color: var(--p0-border);  }
+  .kpi-chip.c-purple { color: var(--p1);  background: var(--p1-bg);  border-color: var(--p1-border);  }
+  .kpi-chip.c-amber  { color: var(--p1s); background: var(--p1s-bg); border-color: var(--p1s-border); }
+  .kpi-chip.c-red    { color: var(--p2);  background: var(--p2-bg);  border-color: var(--p2-border);  }
+  .kpi-chip.c-blue   { color: var(--p3);  background: var(--p3-bg);  border-color: var(--p3-border);  }
+  .kpi-chip.c-violet { color: var(--ops); background: var(--ops-bg); border-color: var(--ops-border); }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-left">
+    <h1>Product Roadmap — Self-test Platform</h1>
+    <p>Project: TESTDI · 4 phases · Đội 9 người · Benchmark: SBTI model</p>
+  </div>
+  <div class="header-badges">
+    <span class="badge badge-green">✓ Validate first</span>
+    <span class="badge badge-purple">⚡ Build after</span>
+    <span class="badge badge-amber">9 members</span>
+    <span class="badge badge-blue">63 issues in Jira</span>
+  </div>
+</div>
+
+<!-- TIMELINE -->
+<div class="timeline">
+  <div class="tl-item active">
+    <div class="tl-label">Phase 0 · Tuần 1–2</div>
+    <div class="tl-title">Discovery & Brief</div>
+  </div>
+  <div class="tl-item">
+    <div class="tl-label">Phase 1 · Tuần 3–5</div>
+    <div class="tl-title">Landing MVP</div>
+  </div>
+  <div class="tl-item">
+    <div class="tl-label">Phase 1 · Tuần 4–6</div>
+    <div class="tl-title">Seeding & Validate</div>
+  </div>
+  <div class="tl-item">
+    <div class="tl-label">Phase 2 · Tháng 2–3</div>
+    <div class="tl-title">Build Platform</div>
+  </div>
+  <div class="tl-item">
+    <div class="tl-label">Phase 3 · Tháng 4+</div>
+    <div class="tl-title">Monetize & Scale</div>
+  </div>
+</div>
+
+<!-- CARDS -->
+<div class="cards">
+
+  <!-- PHASE 0 -->
+  <div class="phase-card c-green">
+    <div class="card-header">
+      <div class="card-header-left">
+        <span class="phase-tag c-green">PHASE 0</span>
+        <span class="card-title">Discovery & Brief nội bộ</span>
+      </div>
+      <span class="card-duration">Tuần 1–2 · Sprint 1</span>
+    </div>
+    <div class="card-body">
+      <div class="meta-row">
+        <div class="meta-box">
+          <div class="meta-label">Mục tiêu</div>
+          <div class="meta-value">Align toàn team về vision, USP, benchmark</div>
+        </div>
+        <div class="meta-box">
+          <div class="meta-label">Owner chính</div>
+          <div class="meta-value">PO (bạn)</div>
+        </div>
+        <div class="meta-box">
+          <div class="meta-label">Output chính</div>
+          <div class="meta-value">PRD v1, Jira setup, brand concept</div>
+        </div>
+      </div>
+      <div class="two-col">
+        <div>
+          <div class="col-title">Việc cần làm</div>
+          <ul class="checklist">
+            <li>Viết PRD v1 (product requirement doc)</li>
+            <li>Chọn tên + concept thương hiệu</li>
+            <li>Setup Jira: epics, sprint 1</li>
+            <li>Benchmark sâu SBTI + 16P (UX audit)</li>
+            <li>Chọn 3 bài test MVP để làm trước</li>
+            <li>Brief toàn đội — kickoff meeting 90 phút</li>
+            <li>Quyết định tech stack + setup GitHub repo</li>
+          </ul>
+        </div>
+        <div>
+          <div class="col-title">Tool AI nên dùng</div>
+          <ul class="checklist ai">
+            <li>Claude: viết PRD, brief, user persona</li>
+            <li>Midjourney / Canva AI: brand mood board</li>
+            <li>Perplexity: research thị trường nhanh</li>
+            <li>Notion AI: tổng hợp docs</li>
+          </ul>
+        </div>
+      </div>
+      <div class="goal-box c-green">
+        <strong>Kết quả tuần 2:</strong> Toàn team có brief rõ ràng, Jira sạch, biết làm gì tuần tiếp theo.
+      </div>
+    </div>
+  </div>
+
+  <!-- PHASE 1 MVP -->
+  <div class="phase-card c-purple">
+    <div class="card-header">
+      <div class="card-header-left">
+        <span class="phase-tag c-purple">PHASE 1 — MVP LANDING</span>
+        <span class="card-title">Landing page để seed & validate</span>
+      </div>
+      <span class="card-duration">Tuần 3–5 · Sprint 2</span>
+    </div>
+    <div class="card-body">
+      <div class="meta-row">
+        <div class="meta-box">
+          <div class="meta-label">Mục tiêu</div>
+          <div class="meta-value">Đo quan tâm thực sự trước khi code full</div>
+        </div>
+        <div class="meta-box">
+          <div class="meta-label">Output</div>
+          <div class="meta-value">Landing page đẹp + 1 bài test thử beta</div>
+        </div>
+        <div class="meta-box">
+          <div class="meta-label">KPI validate</div>
+          <div class="meta-value">500+ lượt làm test · CTR social &gt;3%</div>
+        </div>
+      </div>
+      <div class="two-col">
+        <div>
+          <div class="col-title">Dev tasks</div>
+          <ul class="checklist">
+            <li>Landing page (Webflow / Next.js đơn giản)</li>
+            <li>1 bài test beta hoàn chỉnh (quiz + kết quả đẹp)</li>
+            <li>Kết quả có nút share ảnh PNG (ưu tiên #1)</li>
+            <li>Logic tính điểm → map ra type kết quả</li>
+            <li>Thu email / Zalo OA để remarketing</li>
+            <li>GA4 + Hotjar free (heatmap & recording)</li>
+            <li>Deploy Vercel + custom domain</li>
+          </ul>
+        </div>
+        <div>
+          <div class="col-title">Content tasks</div>
+          <ul class="checklist">
+            <li>15–20 câu hỏi bài test beta (dùng Claude AI)</li>
+            <li>4–8 types kết quả cực relatable</li>
+            <li>Copy landing page: tagline, CTA, mô tả</li>
+            <li>Design result card đẹp để share (Artist)</li>
+            <li>Brief visual brand: màu, font, tone</li>
+          </ul>
+        </div>
+      </div>
+      <hr class="divider">
+      <div class="col-title">Phân công đội</div>
+      <div class="owner-row">
+        <span class="owner-tag">PO: brief content, QA, điều phối</span>
+        <span class="owner-tag">BA/DEV: backend quiz engine</span>
+        <span class="owner-tag">FE Dev 1: landing page</span>
+        <span class="owner-tag">FE Dev 2: quiz flow + result</span>
+        <span class="owner-tag">Artist: result card, brand visual</span>
+        <span class="owner-tag">4 Content: câu hỏi, mô tả kết quả</span>
+      </div>
+      <div class="goal-box c-purple" style="margin-top:14px;">
+        <strong>Ưu tiên tuyệt đối:</strong> Share card đẹp → nội dung relatable → giao diện → quiz logic. Share card chính là viral engine, làm trước.
+      </div>
+    </div>
+  </div>
+
+  <!-- PHASE 1 SEEDING -->
+  <div class="phase-card c-amber">
+    <div class="card-header">
+      <div class="card-header-left">
+        <span class="phase-tag c-amber">PHASE 1 — SEEDING</span>
+        <span class="card-title">Social validation & Go/No-Go</span>
+      </div>
+      <span class="card-duration">Tuần 4–6 · Sprint 3</span>
+    </div>
+    <div class="card-body">
+      <div class="kpi-row">
+        <span class="kpi-chip c-amber">500+ lượt làm test</span>
+        <span class="kpi-chip c-amber">Share rate &gt;20%</span>
+        <span class="kpi-chip c-amber">CTR social &gt;3%</span>
+        <span class="kpi-chip c-amber">Sentiment positive &gt;70%</span>
+        <span class="kpi-chip c-amber">200+ email/Zalo</span>
+      </div>
+      <div class="two-col">
+        <div>
+          <div class="col-title">Seeding tasks</div>
+          <ul class="checklist">
+            <li>5–10 video TikTok/Reels teaser (15–30s)</li>
+            <li>Seeding Threads: post kết quả tự nhiên</li>
+            <li>Seeding 10–15 FB Groups self-dev VN</li>
+            <li>2 video YouTube faceless (5–15 phút)</li>
+            <li>Schedule đăng: TikTok 3–5 vid/tuần</li>
+          </ul>
+        </div>
+        <div>
+          <div class="col-title">Tool AI cho video</div>
+          <ul class="checklist ai">
+            <li>CapCut AI: dựng video TikTok nhanh</li>
+            <li>HeyGen: avatar đọc kết quả test</li>
+            <li>ElevenLabs: giọng đọc tiếng Việt</li>
+            <li>Claude: viết script video, comment seeding</li>
+            <li>Buffer/Hootsuite: lên lịch đăng tự động</li>
+          </ul>
+        </div>
+      </div>
+      <div class="goal-box c-amber">
+        <strong>GO / NO-GO decision:</strong> Sau 2–3 tuần seeding, họp toàn đội review số liệu. Đạt KPI → Phase 2 build proper. Không đạt → pivot concept hoặc đổi bài test trước khi đầu tư tiếp.
+      </div>
+    </div>
+  </div>
+
+  <!-- PHASE 2 -->
+  <div class="phase-card c-red">
+    <div class="card-header">
+      <div class="card-header-left">
+        <span class="phase-tag c-red">PHASE 2 — BUILD PROPER</span>
+        <span class="card-title">Xây platform thật sự sau khi validate</span>
+      </div>
+      <span class="card-duration">Tháng 2–3 · Sprint 4</span>
+    </div>
+    <div class="card-body">
+      <div class="meta-row">
+        <div class="meta-box">
+          <div class="meta-label">Tech stack</div>
+          <div class="meta-value">Next.js + Supabase + Vercel</div>
+        </div>
+        <div class="meta-box">
+          <div class="meta-label">KPI target</div>
+          <div class="meta-value">5.000 users · 30% quay lại</div>
+        </div>
+        <div class="meta-box">
+          <div class="meta-label">Điều kiện bắt đầu</div>
+          <div class="meta-value">Phase 1 đạt GO decision</div>
+        </div>
+      </div>
+      <div class="two-col">
+        <div>
+          <div class="col-title">Must-have features</div>
+          <ul class="checklist">
+            <li>Thư viện 5–10 bài test đa dạng chủ đề</li>
+            <li>Đăng nhập Google / Facebook (Supabase Auth)</li>
+            <li>Profile: lưu lịch sử, kết quả các bài test</li>
+            <li>Share card tự động xuất ảnh PNG</li>
+            <li>So sánh kết quả với bạn bè (link invite)</li>
+            <li>SEO cho từng trang bài test</li>
+          </ul>
+        </div>
+        <div>
+          <div class="col-title">Nice-to-have features</div>
+          <ul class="checklist">
+            <li>Dark mode</li>
+            <li>Combo test (MBTI + Love Language)</li>
+            <li>Push notification khi có bài test mới</li>
+            <li>Bảng xếp hạng type trong cộng đồng</li>
+            <li>Chatbot gợi ý bài test phù hợp</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PHASE 3 -->
+  <div class="phase-card c-blue">
+    <div class="card-header">
+      <div class="card-header-left">
+        <span class="phase-tag c-blue">PHASE 3 — MONETIZE</span>
+        <span class="card-title">Tăng trưởng & doanh thu</span>
+      </div>
+      <span class="card-duration">Tháng 4+ · Sprint 5</span>
+    </div>
+    <div class="card-body">
+      <div class="kpi-row">
+        <span class="kpi-chip c-blue">50.000 users</span>
+        <span class="kpi-chip c-blue">DAU/MAU &gt;15%</span>
+        <span class="kpi-chip c-blue">Doanh thu đầu tiên</span>
+      </div>
+      <div class="three-col">
+        <div class="mini-box">
+          <div class="mini-label">💎 Freemium</div>
+          <div class="mini-value">Kết quả chi tiết cần đăng ký. Premium: bài test độc quyền, PDF report sâu, không quảng cáo. Stripe / VNPay.</div>
+        </div>
+        <div class="mini-box">
+          <div class="mini-label">🤝 Brand collab</div>
+          <div class="mini-value">Branded test cho HR, edu. "Bạn phù hợp ngành gì? — Powered by [Brand]". Co-branded result card.</div>
+        </div>
+        <div class="mini-box">
+          <div class="mini-label">📊 Data insight B2B</div>
+          <div class="mini-value">Aggregate data ẩn danh → insight report bán cho thương hiệu muốn hiểu Gen Z VN.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTENT OPS -->
+  <div class="phase-card c-violet">
+    <div class="card-header">
+      <div class="card-header-left">
+        <span class="phase-tag c-violet">CONTENT OPS</span>
+        <span class="card-title">Sản xuất content liên tục — chạy song song tất cả phases</span>
+      </div>
+      <span class="card-duration">Ongoing</span>
+    </div>
+    <div class="card-body">
+      <div class="two-col">
+        <div>
+          <div class="col-title">Quy trình chuẩn</div>
+          <ul class="checklist">
+            <li>Template brief cho bài test mới</li>
+            <li>Prompt library Claude AI viết test nhanh</li>
+            <li>Lịch đăng cố định hàng tuần mọi platform</li>
+            <li>Theo dõi trend → pitch bài test mới trong 48h</li>
+          </ul>
+        </div>
+        <div>
+          <div class="col-title">Lịch content target</div>
+          <ul class="checklist">
+            <li>TikTok: 3–5 video/tuần</li>
+            <li>Instagram: 1 post/ngày</li>
+            <li>Threads: 2–3 post/ngày</li>
+            <li>YouTube: 1 video/tuần</li>
+            <li>Bài test mới: 2–4 bài/tháng</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <p>TESTDI · Self-test Platform · Roadmap v1.0</p>
+  <p>Last updated: tháng 5/2025 · Generated for Confluence</p>
+</div>
+
+</body>
+</html>
